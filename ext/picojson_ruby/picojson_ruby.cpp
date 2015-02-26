@@ -7,7 +7,7 @@ static VALUE rb_picojson_merge(VALUE self, VALUE base, VALUE key, VALUE value) {
   picojson::value v;
   std::string err;
   const char* json = StringValuePtr(base);
-  const char* json_end = picojson::parse(v, json, json + strlen(json), &err);
+  picojson::parse(v, json, json + strlen(json), &err);
   if (!err.empty()) {
     rb_raise(rb_eTypeError, err.c_str());
   }
