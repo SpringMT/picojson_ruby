@@ -33,6 +33,9 @@ p PicojsonRuby.append("{}", "key", "value")
 # => "{\"key\":\"value\"}"
 ```
 
+### merge
+Under Development
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/picojson_ruby/fork )
