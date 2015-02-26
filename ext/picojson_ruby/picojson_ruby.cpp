@@ -11,12 +11,25 @@ static VALUE rb_picojson_merge(VALUE self, VALUE base, VALUE key, VALUE value) {
   if (!err.empty()) {
     rb_raise(rb_eTypeError, err.c_str());
   }
+
   const char* inserting_key = StringValuePtr(key);
-  const char* inserting_value = StringValuePtr(value);
   picojson::object &obj = v.get<picojson::object>();
-  obj.insert(std::make_pair(inserting_key, inserting_value));
+
+  switch (TYPE(value)) {
+    case T_FIXNUM:
+      obj.insert(std::map<std::string, double>::value_type(inserting_key, FIX2INT(value)));
+      break;
+    case T_STRING:
+      obj.insert(std::make_pair(inserting_key, StringValuePtr(value)));
+      break;
+    default:
+      /* 例外を発生させる */
+      rb_raise(rb_eTypeError, "not valid value");
+      break;
+  }
   std::string new_json = v.serialize();
-  return rb_str_new(new_json.c_str(), strlen(new_json.c_str()));
+  const char* new_json_char = new_json.c_str();
+  return rb_str_new(new_json_char, strlen(new_json_char));
 }
 
 extern "C" void
