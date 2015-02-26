@@ -1,5 +1,5 @@
 #include "picojson_ruby.h"
-#include "picojson.h"
+#include "../../modules/picojson/picojson.h"
 
 VALUE rb_cPicojsonRuby;
 

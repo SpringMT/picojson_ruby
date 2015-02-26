@@ -1,6 +1,11 @@
 # PicojsonRuby
 
-TODO: Write a gem description
+Memory saving JSON merge for Ruby.
+
+Using picojson parsing JSON.
+
+[kazuho / picojson](https://github.com/kazuho/picojson)
+
 
 ## Installation
 
@@ -20,7 +25,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### append
+Add JSON for one item.
+
+```
+p PicojsonRuby.append("{}", "key", "value")
+# => "{\"key\":\"value\"}"
+```
 
 ## Contributing
 
